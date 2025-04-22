@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* Define your beige theme colors as CSS variables */
+:root {
+  --color-beige-light: #F5F5DD;
+  --color-beige: #E3D8B7;
+  --color-beige-dark: #D1BB91;
+}
+
+/* Tailwind base, components, utilities (order matters) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
