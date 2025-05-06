@@ -1,12 +1,15 @@
-import { FiSearch, FiShoppingCart } from "react-icons/fi";
+import { FiShoppingCart } from "react-icons/fi";
+import { FaUserCircle } from "react-icons/fa";
 import czFlag from "../assets/cz-flag.png";
 import enFlag from "../assets/en-flag.png";
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 
 export default function Navbar() {
   const navigate = useNavigate();
   const { cartItems } = useCart();
+  const { user } = useAuth();
 
   return (
     <nav className="bg-[#4B3621] px-4 py-2 shadow-md">
@@ -16,27 +19,19 @@ export default function Navbar() {
           <button 
             className="bg-beige px-4 py-2 rounded text-white hover:bg-[#987554] transition"
             onClick={() => navigate('/')}
-          >
-            Home
-          </button>
+          >Home</button>
           <button
             className="bg-beige px-4 py-2 rounded text-white hover:bg-[#987554] transition"
             onClick={() => navigate('/about')}
-          >
-            About Us
-          </button>
+          >About Us</button>
           <button
             className="bg-beige px-4 py-2 rounded text-white hover:bg-[#987554] transition"
             onClick={() => navigate('/services')}
-          >
-            Services
-          </button>
+          >Services</button>
           <button
             className="bg-beige px-4 py-2 rounded text-white hover:bg-[#987554] transition"
             onClick={() => navigate('/store')}
-          >
-            Store
-          </button>
+          >Store</button>
         </div>
 
         {/* Center Section */}
@@ -48,22 +43,33 @@ export default function Navbar() {
         <div className="flex items-center space-x-1">
           {/* Language Selector */}
           <div className="flex space-x-1 bg-beige rounded px-3 py-1">
-            {/* CZ */}
             <button className="flex items-center space-x-2 px-3 py-1 rounded hover:bg-[#987554] transition cursor-pointer">
               <span className="text-white font-semibold text-base">CZ</span>
               <img src={czFlag} alt="Czech Flag" className="w-6 h-4 object-cover rounded-sm" />
             </button>
-            {/* EN */}
             <button className="flex items-center space-x-2 px-3 py-1 rounded hover:bg-[#987554] transition cursor-pointer">
               <span className="text-white font-semibold text-base">EN</span>
               <img src={enFlag} alt="English Flag" className="w-6 h-4 object-cover rounded-sm" />
             </button>
           </div>
 
-          {/* Profile */}
-          <button className="bg-beige px-4 py-2 rounded text-white hover:bg-[#987554] transition hidden sm:block">
-            Profile
-          </button>
+          {/* Authentication Section */}
+          {user ? (
+            <button
+              className="bg-beige p-2 rounded flex items-center justify-center hover:bg-[#987554] transition"
+              onClick={() => navigate('/profile')}
+              title="Profile"
+            >
+              <FaUserCircle className="text-2xl text-white" />
+            </button>
+          ) : (
+            <button
+              className="bg-beige px-4 py-2 rounded text-white hover:bg-[#987554] transition"
+              onClick={() => navigate('/login')}
+            >
+              Login/Register
+            </button>
+          )}
 
           {/* Cart */}
           <Link to="/cart" className="bg-beige p-3 rounded hover:bg-[#987554] transition relative">

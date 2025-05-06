@@ -15,13 +15,13 @@ import StorePage from "./pages/ClothStore.jsx";
 import CheckoutPage from "./pages/CheckoutPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login"; 
-import Register from "./pages/Register"; 
-
+import Register from "./pages/Register";
+import ProfilePage from "./pages/ProfilePage.jsx";
 function App() {
   return (
-    <AuthProvider>
-      <CartProvider>
-        <Router>
+    <Router>
+      <AuthProvider>
+        <CartProvider>
           <div className="min-h-screen bg-beige flex flex-col">
             <Navbar />
             <main className="flex-1">
@@ -35,22 +35,21 @@ function App() {
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                {/* Protected checkout route */}
-                <Route
-                  path="/checkout"
-                  element={
-                    <ProtectedRoute>
-                      <CheckoutPage />
-                    </ProtectedRoute>
-                  }
-                />
+                <Route path="/profile" element={<ProfilePage />} />
+
+                {/* Protected routes */}
+                <Route path="/checkout" element={
+                  <ProtectedRoute>
+                    <CheckoutPage />
+                  </ProtectedRoute>
+                } />
               </Routes>
             </main>
             <Footer />
           </div>
-        </Router>
-      </CartProvider>
-    </AuthProvider>
+        </CartProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 
