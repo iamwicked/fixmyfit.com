@@ -1,4 +1,3 @@
- 
 // server.js
 require('dotenv').config();
 const express = require('express');
@@ -6,7 +5,6 @@ const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
 const authMiddleware = require('./middleware/auth');
 const cors = require('cors');
-
 
 const app = express();
 
@@ -18,9 +16,9 @@ mongoose.connect(process.env.MONGODB_URI)
 // Middleware
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:5173', // or your frontend URL
+    origin: ['http://localhost:5173', 'https://fixmyfit-com-1.onrender.com'], // Add your deployed URL here
     credentials: true
-  }));
+}));
 
 // Routes
 app.use('/api/auth', authRoutes);

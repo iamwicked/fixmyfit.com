@@ -4,7 +4,7 @@ import { AuthProvider } from "./context/AuthContext.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
 
 import Navbar from "./components/Navbarr";
-import HomePage from "./pages/homepage.jsx";
+import HomePage from "./pages/HomePage.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
 import CartPage from "./pages/CartPage";
 import Footer from "./components/Footerr.jsx";
